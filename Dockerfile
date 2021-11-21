@@ -37,6 +37,9 @@ RUN apk update && apk upgrade && apk add --update --no-cache \
 RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
+# Add Puma SSL certificate files.
+COPY ./keys/ /home/root/.ssh/
+
 # Install Gems
 ADD Gemfile .
 ADD Gemfile.lock .

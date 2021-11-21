@@ -11,7 +11,18 @@ threads min_threads_count, max_threads_count
 # Specifies the `worker_timeout` threshold that Puma will use to wait before
 # terminating a worker in development environments.
 #
-worker_timeout 3600 if ENV.fetch("RAILS_ENV", "development") == "development"
+if ENV.fetch('RAILS_ENV') { 'development' } == 'development'
+  ssl_bind '0.0.0.0', '3001', {
+    cert: '/home/root/.ssh/dev.rails-7-hotwire.com.pem',
+    key: '/home/root/.ssh/dev.rails-7-hotwire.com-key.pem'
+  }
+  worker_timeout 1000
+elsif ENV.fetch('RAILS_ENV') == 'test'
+  ssl_bind '0.0.0.0', '3001', {
+    cert: '/home/root/.ssh/test/dev.rails-7-hotwire.com.pem',
+    key: '/home/root/.ssh/test/dev.rails-7-hotwire.com-key.pem'
+  }
+end
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
