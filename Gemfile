@@ -63,6 +63,7 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
 
   gem 'factory_bot_rails'
+  gem 'i18n-tasks', '~> 0.9.35'
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.2'
   gem 'shoulda-matchers'
