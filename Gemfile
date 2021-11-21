@@ -49,6 +49,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'config', '~> 3.1.0'
+gem 'enum_help', '~> 0.0.17'
 gem 'goldiloader'
 gem 'rack-attack', '~> 6.5.0'
 gem 'seed-fu', '~> 2.3.9'

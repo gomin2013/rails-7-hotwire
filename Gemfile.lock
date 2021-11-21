@@ -137,6 +137,8 @@ GEM
       dry-core (~> 0.5, >= 0.5)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.9, >= 1.9.1)
+    enum_help (0.0.18)
+      activesupport (>= 3.0.0)
     erubi (1.10.0)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -341,6 +343,7 @@ DEPENDENCIES
   cssbundling-rails
   database_cleaner
   debug
+  enum_help (~> 0.0.17)
   factory_bot_rails
   goldiloader
   i18n-tasks (~> 0.9.35)
