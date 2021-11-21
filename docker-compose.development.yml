@@ -1,6 +1,35 @@
 version: '3'
 
 services:
+  postgres:
+    image: postgres:14.1-alpine
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+
+    ports:
+      - 5432:5432
+
+    container_name: postgres_db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+
+    ports:
+      - 8080:80
+
+    container_name: pgadmin
+    volumes:
+      - pgadmin-data:/opt/pgadmin
+
+    depends_on:
+      - postgres
+
   web: &web_base
     build: .
     command: bundle exec puma -C config/puma.rb
@@ -32,6 +61,7 @@ services:
       - dummy:/rails-7-hotwire/.git
 
     depends_on:
+      - postgres
       - redis
 
     tty: true
@@ -70,6 +100,12 @@ services:
       - redis-data:/data
 
 volumes:
+  postgres-data:
+    driver: local
+
+  pgadmin-data:
+    driver: local
+
   s3-data:
     driver: local
 
