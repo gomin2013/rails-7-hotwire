@@ -1,0 +1,57 @@
+require:
+  - rubocop/cop/internal_affairs
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0.3
+  TargetRailsVersion: 7.0.0
+  Exclude:
+    - bin/*
+    - db/schema.rb
+    - lib/**/*
+    - node_modules/**/*
+
+Rails:
+  Enabled: true
+
+Rails/CreateTableWithTimestamps:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+
+Metrics/AbcSize:
+  Max: 20
+
+Metrics/BlockLength:
+  IgnoredMethods:
+    - describe
+    - context
+    - define
+    - factory
+  Exclude:
+    - config/**/*.rb
+    - db/migrate/*.rb
+
+Metrics/MethodLength:
+  Exclude:
+    - db/migrate/*.rb
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+  Exclude:
+    - config/**/*.rb
+    - db/migrate/*.rb
+    - spec/**/*.rb
