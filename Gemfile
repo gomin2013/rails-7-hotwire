@@ -48,6 +48,7 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem 'seed-fu', '~> 2.3.9'
 gem 'sidekiq', '~> 6.4.1'
 gem 'strong_migrations'
 
