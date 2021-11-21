@@ -80,4 +80,8 @@ Rails.application.configure do
     Bullet.rails_logger = true
     Bullet.add_footer = true
   end
+
+  BetterErrors::Middleware.allow_ip! '0.0.0.0/0'
+  config.web_console.allowed_ips = '0.0.0.0/0'
+  config.middleware.use Rack::Attack
 end

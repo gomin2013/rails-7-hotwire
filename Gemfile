@@ -49,6 +49,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'goldiloader'
+gem 'rack-attack', '~> 6.5.0'
 gem 'seed-fu', '~> 2.3.9'
 gem 'sidekiq', '~> 6.4.1'
 gem 'strong_migrations'
@@ -68,6 +69,9 @@ group :development, :test do
 end
 
 group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
