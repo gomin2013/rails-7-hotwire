@@ -42,6 +42,7 @@ services:
       - AWS_BUCKET_NAME=rails-7-hotwire-dev
       - BUNDLE_PATH=/usr/local/bundle
       - EDITOR=vim
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
       - RACK_ENV=development
       - RAILS_ENV=development
       - RAILS_MASTER_KEY
@@ -63,6 +64,7 @@ services:
     depends_on:
       - postgres
       - redis
+      - elasticsearch
 
     tty: true
     stdin_open: true
@@ -82,6 +84,41 @@ services:
       - MINIO_ROOT_PASSWORD=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
     command: server /export --console-address ':9001'
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.14.2
+    ports:
+      - 9200:9200
+      - 9300:9300
+
+    container_name: elasticsearch
+    environment:
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - ES_JAVA_OPTS=-Xms256m -Xmx256m
+      - discovery.type=single-node
+      - http.cors.allow-credentials=true
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-origin=http://dev.rails-7-hotwire.com:1358
+      - http.cors.enabled=true
+      - http.port=9200
+
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+    volumes:
+      - es-data:/usr/share/elasticsearch/data/
+
+  dejavu:
+    image: appbaseio/dejavu
+    ports:
+      - 1358:1358
+
+    container_name: dejavu
+    depends_on:
+      - elasticsearch
 
   worker:
     <<: *web_base
@@ -107,6 +144,9 @@ volumes:
     driver: local
 
   s3-data:
+    driver: local
+
+  es-data:
     driver: local
 
   redis-data:
