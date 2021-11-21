@@ -84,4 +84,7 @@ Rails.application.configure do
   BetterErrors::Middleware.allow_ip! '0.0.0.0/0'
   config.web_console.allowed_ips = '0.0.0.0/0'
   config.middleware.use Rack::Attack
+
+  # Indent html for pretty debugging and do not sort attributes
+  Slim::Engine.set_options pretty: true, sort_attrs: false
 end

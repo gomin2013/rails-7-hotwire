@@ -54,6 +54,7 @@ gem 'goldiloader'
 gem 'rack-attack', '~> 6.5.0'
 gem 'seed-fu', '~> 2.3.9'
 gem 'sidekiq', '~> 6.4.1'
+gem 'slim-rails', '~> 3.3.0'
 gem 'strong_migrations'
 
 group :development, :test do
@@ -69,6 +70,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 5.0.2'
   gem 'shoulda-matchers'
+  gem 'slim_lint', '~> 0.22.1'
 end
 
 group :development do
