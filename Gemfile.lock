@@ -169,6 +169,8 @@ GEM
       redis (>= 4.2.0)
     stimulus-rails (1.0.2)
       railties (>= 6.0.0)
+    strong_migrations (0.8.0)
+      activerecord (>= 5.2)
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
@@ -202,6 +204,7 @@ DEPENDENCIES
   rails (~> 7.0.2, >= 7.0.2.2)
   sidekiq (~> 6.4.1)
   stimulus-rails
+  strong_migrations
   turbo-rails
   tzinfo-data
   web-console
