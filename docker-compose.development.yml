@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  web: &web_base
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    environment:
+      - BUNDLE_PATH=/usr/local/bundle
+      - EDITOR=vim
+      - RACK_ENV=development
+      - RAILS_ENV=development
+
+    ports:
+      - 80:3000
+      - 443:3001
+      - 8808:8808
+
+    container_name: web
+    volumes:
+      - .:/rails-7-hotwire:cached
+      - bundle:/usr/local/bundle:cached
+      - dummy:/rails-7-hotwire/vendor
+      - dummy:/rails-7-hotwire/log
+      - dummy:/rails-7-hotwire/.git
+
+    tty: true
+    stdin_open: true
+
+  worker:
+    <<: *web_base
+    command: bundle exec sidekiq -q default -q mailers
+    ports: []
+    container_name: worker
+
+volumes:
+  bundle:
+    driver: local
+
+  packs:
+    driver: local
+
+  dummy:
