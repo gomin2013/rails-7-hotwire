@@ -9,6 +9,7 @@ services:
       - EDITOR=vim
       - RACK_ENV=development
       - RAILS_ENV=development
+      - RAILS_MASTER_KEY
 
     ports:
       - 80:3000
