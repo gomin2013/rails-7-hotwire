@@ -32,7 +32,7 @@ services:
 
   web: &web_base
     build: .
-    command: bundle exec puma -C config/puma.rb
+    command: bundle exec foreman start -f Procfile.dev
     environment:
       - AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
       - AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
