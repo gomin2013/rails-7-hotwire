@@ -1,4 +1,12 @@
 {
-  "name": "app",
-  "private": "true"
+  "name": "rails-7-hotwire",
+  "private": "true",
+  "scripts": {
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+  },
+  "dependencies": {
+    "esbuild": "^0.14.22",
+    "sass": "^1.49.8"
+  }
 }
