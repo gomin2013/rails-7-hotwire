@@ -1,8 +1,8 @@
 #notice
-  p = notice
+  = notice
 
 div
-  strong Name:
+  strong Name
   = @room.name
 
 div
@@ -10,7 +10,7 @@ div
   = ' | '
   = link_to('Back', rooms_path)
 
-#messages
-  = render(@room.messages)
+#message
+  = render(@room.message)
 
 = link_to('New Message', new_room_message_path(@room))

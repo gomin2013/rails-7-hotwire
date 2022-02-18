@@ -8,8 +8,8 @@ class MessagesController < ApplicationController
   def create
     @message = @room.messages.create!(message_params)
 
-    respond_to do
-      format.html { redirect_to(@room) }
+    respond_to do |format|
+      format.html { redirect_to(room_url(@room), notice: 'Message was successfully created.') }
     end
   end
 
