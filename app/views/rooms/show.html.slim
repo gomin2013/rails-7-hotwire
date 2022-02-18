@@ -1,14 +1,15 @@
 #notice
   p = notice
 
-div
-  strong Name:
-  = @room.name
+= turbo_frame_tag('room') do
+  div
+    strong Name:
+    = @room.name
 
-div
-  = link_to('Edit', edit_room_path(@room))
-  = ' | '
-  = link_to('Back', rooms_path)
+  div
+    = link_to('Edit', edit_room_path(@room))
+    = ' | '
+    = link_to('Back', rooms_path)
 
 #messages
   = render(@room.messages)

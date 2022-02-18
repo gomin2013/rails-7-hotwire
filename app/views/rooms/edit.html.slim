@@ -1,6 +1,7 @@
 h1 Editing room
 
-== render 'form'
+= turbo_frame_tag('room') do
+  = render('form', room: @room)
 
 div
   = link_to('Show', @room)
